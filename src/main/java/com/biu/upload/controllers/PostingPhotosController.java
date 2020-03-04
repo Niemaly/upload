@@ -28,7 +28,7 @@ public class PostingPhotosController {
     @Autowired
     ImageService imageService;
 
-    private static String UPLOADED_FOLDER = "/home/jacek/Pulpit/";
+    private static String UPLOADED_FOLDER = "/home/jacek/Pulpit/photos";
 
 
     @PostMapping("/")
@@ -62,7 +62,6 @@ public class PostingPhotosController {
 
         JSONObject jsonObject = new JSONObject();
         jsonObject.put("src",imageService.getAllUserPhotos(user.getUsername()).get(imageService.getAllUserPhotos(user.getUsername()).size() - 1).getWatermarkUrl() );
-        System.out.println(jsonObject.toString());
         return jsonObject.toString();
 
     }

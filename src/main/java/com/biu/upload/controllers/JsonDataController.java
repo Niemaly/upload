@@ -31,8 +31,6 @@ public class JsonDataController {
         });
 
 
-    //    System.out.println(jsonObject.toString());
-
         return jsonObject.toString();
 
     }
@@ -52,8 +50,6 @@ public class JsonDataController {
                 jsonObject.append("images", photoData);
             }
         });
-
-  //      System.out.println(jsonObject.toString());
 
         return jsonObject.toString();
 
