@@ -18,6 +18,8 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.UUID;
+
 @ComponentScan
 @RestController
 public class PostingPhotosController {
@@ -28,7 +30,7 @@ public class PostingPhotosController {
     @Autowired
     ImageService imageService;
 
-    private static String UPLOADED_FOLDER = "/home/jacek/Pulpit/photos";
+    private static String UPLOADED_FOLDER = "/home/jacek/Pulpit/photos/";
 
 
     @PostMapping("/")
@@ -41,10 +43,13 @@ public class PostingPhotosController {
         }
 
         try {
+            UUID uuid =  UUID.randomUUID();
 
             byte[] bytes = file.getBytes();
-            Path path = Paths.get(UPLOADED_FOLDER + file.getOriginalFilename());
+            Path path = Paths.get(UPLOADED_FOLDER + uuid.toString());
             Files.write(path, bytes);
+
+            System.out.println(path);
 
             redirectAttributes.addFlashAttribute("message",
                     "You successfully uploaded '" + file.getOriginalFilename() + "'");
